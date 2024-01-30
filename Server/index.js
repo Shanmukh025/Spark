@@ -10,13 +10,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
+import { posts, users } from "./data/index.js";
 import { verifyToken } from "./middleware/auth.js";
+import Post from "./models/post.js";
+import User from "./models/user.js";
 import authRoutes from "./routes/auth.js";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
-import Post from "./models/post.js";
-import User from "./models/user.js";
-import { users, posts } from "./data/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,5 +55,7 @@ mongoose
     .connect(process.env.MONGODB_URL)
     .then(() => {
         app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`));
+        // User.insertMany(users);
+        // Post.insertMany(posts);
     })
     .catch((error) => console.log(`${error} didn't connect`));

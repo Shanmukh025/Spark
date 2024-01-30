@@ -7,8 +7,8 @@ export const register = async (req, res) => {
         const {
             fname,
             lname,
-            username,
             email,
+            username,
             password,
             picturePath,
             friends,
@@ -20,7 +20,6 @@ export const register = async (req, res) => {
         const newUser = new User({
             fname,
             lname,
-            username,
             email,
             password: hasedPassword,
             picturePath,
