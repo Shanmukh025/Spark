@@ -48,10 +48,10 @@ export const posts = [
         picturePath: "post1.jpeg",
         userPicturePath: "p3.jpeg",
         likes: new Map([
-            [userIds[0].toString(), true],
-            [userIds[2].toString(), true],
-            [userIds[3].toString(), true],
-            [userIds[4].toString(), true],
+            [userIds[0], true],
+            [userIds[2], true],
+            [userIds[3], true],
+            [userIds[4], true],
         ]),
         comments: [
             "random comment",
@@ -70,10 +70,10 @@ export const posts = [
         picturePath: "post2.jpeg",
         userPicturePath: "p6.jpeg",
         likes: new Map([
-            [userIds[0].toString(), true],
-            [userIds[2].toString(), true],
-            [userIds[4].toString(), true],
-            [userIds[1].toString(), true],
+            [userIds[0], true],
+            [userIds[2], true],
+            [userIds[4], true],
+            [userIds[1], true],
         ]),
         comments: [
             "one more random comment",
@@ -82,5 +82,4 @@ export const posts = [
             "I lied, one more random comment",
         ],
     },
-    // Add more posts as needed
 ];
