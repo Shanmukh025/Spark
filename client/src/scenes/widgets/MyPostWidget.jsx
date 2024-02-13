@@ -1,27 +1,27 @@
 import {
-    EditOutlined,
-    DeleteOutlined,
     AttachFileOutlined,
-    GifBoxOutlined,
+    DeleteOutlined,
+    EditOutlined,
     ImageOutlined,
     MicOutlined,
     MoreHorizOutlined,
+    VideoFileOutlined,
 } from "@mui/icons-material";
 import {
     Box,
-    Divider,
-    Typography,
-    InputBase,
-    useTheme,
     Button,
+    Divider,
     IconButton,
+    InputBase,
+    Typography,
     useMediaQuery,
+    useTheme,
 } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
-import Dropzone from "react-dropzone";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
+import Dropzone from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
@@ -81,7 +81,7 @@ const MyPostWidget = ({ picturePath }) => {
                     p="1rem"
                 >
                     <Dropzone
-                        acceptedFiles=".jpg,.jpeg,.png"
+                        acceptedFiles=".jpg,.jpeg,.png,.gif"
                         multiple={false}
                         onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
                     >
@@ -96,7 +96,7 @@ const MyPostWidget = ({ picturePath }) => {
                                 >
                                     <input {...getInputProps()} />
                                     {!image ? (
-                                        <p>Add Image Here</p>
+                                        <p>Add An Image/ G.I.F</p>
                                     ) : (
                                         <FlexBetween>
                                             <Typography>
@@ -136,8 +136,8 @@ const MyPostWidget = ({ picturePath }) => {
                 {isNonMobileScreens ? (
                     <>
                         <FlexBetween gap="0.25rem">
-                            <GifBoxOutlined sx={{ color: mediumMain }} />
-                            <Typography color={mediumMain}>GIF</Typography>
+                            <VideoFileOutlined sx={{ color: mediumMain }} />
+                            <Typography color={mediumMain}>Video</Typography>
                         </FlexBetween>
 
                         <FlexBetween gap="0.25rem">

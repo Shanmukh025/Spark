@@ -1,7 +1,6 @@
 import {
     EditOutlined,
     LocationOnOutlined,
-    ManageAccountsOutlined,
     WorkOutlineOutlined,
 } from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
@@ -69,7 +68,6 @@ const UserWidget = ({ userId, picturePath }) => {
                         </Typography>
                     </Box>
                 </FlexBetween>
-                <ManageAccountsOutlined />
             </FlexBetween>
 
             <Divider />

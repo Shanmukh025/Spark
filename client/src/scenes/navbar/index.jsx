@@ -10,9 +10,7 @@ import Logout from "@mui/icons-material/Logout";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import {
-    Avatar,
     Box,
-    Divider,
     IconButton,
     InputBase,
     ListItemIcon,
@@ -115,11 +113,16 @@ const Navbar = () => {
                         Message
                     </button>
                     <div className="profile">
+                        <h3 onClick={handleClick}>{fullName}</h3>
                         <Tooltip title="My Account">
                             <IconButton
                                 onClick={handleClick}
                                 size="small"
                                 sx={{ ml: 2 }}
+                                style={{
+                                    marginLeft: "-12px",
+                                    marginTop: "-7px",
+                                }}
                                 aria-controls={
                                     open ? "account-menu" : undefined
                                 }
@@ -127,7 +130,7 @@ const Navbar = () => {
                                 aria-expanded={open ? "true" : undefined}
                             >
                                 <div className="user" value={{ fullName }}>
-                                    <h3>{fullName}</h3>
+                                    <h4>▾</h4>
                                 </div>
                             </IconButton>
                         </Tooltip>
@@ -173,11 +176,7 @@ const Navbar = () => {
                                 vertical: "bottom",
                             }}
                         >
-                            <MenuItem onClick={handleClose}>
-                                <Avatar /> Profile
-                            </MenuItem>
-                            <Divider />
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={() => navigate(`/`)}>
                                 <ListItemIcon>
                                     <PersonAdd fontSize="small" />
                                 </ListItemIcon>
@@ -189,10 +188,8 @@ const Navbar = () => {
                                 </ListItemIcon>
                                 Settings
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <ListItemIcon
-                                    onClick={() => dispatch(setLogout())}
-                                >
+                            <MenuItem onClick={() => dispatch(setLogout())}>
+                                <ListItemIcon>
                                     <Logout fontSize="small" />
                                 </ListItemIcon>
                                 Logout
