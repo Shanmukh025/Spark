@@ -59,8 +59,16 @@ const Navbar = () => {
                         height: "80px",
                         width: "150px",
                         cursor: "pointer",
+                        transition: "transform 0.3s ease",
+                    }}
+                    onMouseOver={(e) => {
+                        e.target.style.transform = "scale(1.02)";
+                    }}
+                    onMouseOut={(e) => {
+                        e.target.style.transform = "scale(1)";
                     }}
                 />
+
                 {isNonMobileScreens && (
                     <FlexBetween
                         backgroundColor={theme.palette.neutral.light}
