@@ -141,11 +141,11 @@ const PostWidget = ({
                     <Box display="flex" mt="1rem">
                         <TextField
                             fullWidth
-                            label="Add a comment"
+                            label="Add A Comment"
                             value={newComment}
                             onChange={handleCommentChange}
                         />
-                        <Button onClick={handleCommentSubmit}>Comment</Button>
+                        <Button onClick={handleCommentSubmit}>+Comment</Button>
                     </Box>
                 </Box>
             )}
