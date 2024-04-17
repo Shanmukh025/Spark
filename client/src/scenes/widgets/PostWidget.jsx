@@ -30,9 +30,11 @@ const PostWidget = ({
     userPicturePath,
     likes,
     comments,
+    createdAt,
 }) => {
     const [isComments, setIsComments] = useState(false);
     const [newComment, setNewComment] = useState("");
+    const [isShareOpen, setIsShareOpen] = useState(false); // New state for share box
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
@@ -80,6 +82,21 @@ const PostWidget = ({
         setNewComment("");
     };
 
+    const formattedDate = "25 Jun '24";
+
+    const handleShareTwitter = (post) => {
+        const url = `https://www.twitter.com/compose/post?text=Checkout this New Post from Spark :
+        %0A%0A${encodeURIComponent(description)}`;
+        window.open(url, "_blank");
+    };
+
+    const handleShareLinkedIn = (post) => {
+        // const url = `https://www.linkedin.com/shareArticle?summary=${encodeURIComponent(
+        //     description
+        // )}`;
+        // window.open(url, "_blank");
+    };
+
     return (
         <WidgetWrapper m="2rem 0">
             <Friend
@@ -88,7 +105,10 @@ const PostWidget = ({
                 subtitle={location}
                 userPicturePath={userPicturePath}
             />
-            <Typography color={main} sx={{ mt: "1rem" }}>
+            <Typography
+                color={main}
+                sx={{ mt: "1rem", ml: "0.4rem", fontSize: "1rem" }}
+            >
                 {description}
             </Typography>
             {picturePath && (
@@ -100,7 +120,7 @@ const PostWidget = ({
                     src={`http://localhost:3001/assets/${picturePath}`}
                 />
             )}
-            <FlexBetween mt="0.25rem">
+            <FlexBetween mt="0.5rem">
                 <FlexBetween gap="1rem">
                     <FlexBetween gap="0.3rem">
                         <IconButton onClick={patchLike}>
@@ -121,7 +141,9 @@ const PostWidget = ({
                     </FlexBetween>
                 </FlexBetween>
 
-                <IconButton>
+                <IconButton onClick={() => setIsShareOpen(!isShareOpen)}>
+                    {" "}
+                    {/* Toggle share box */}
                     <ShareOutlined />
                 </IconButton>
             </FlexBetween>
@@ -145,10 +167,47 @@ const PostWidget = ({
                             value={newComment}
                             onChange={handleCommentChange}
                         />
-                        <Button onClick={handleCommentSubmit}>+Comment</Button>
+                        <Button onClick={handleCommentSubmit}>Comment</Button>
                     </Box>
                 </Box>
             )}
+            {isShareOpen && (
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Button onClick={handleShareLinkedIn}>
+                        <img
+                            style={{
+                                width: "22px",
+                                height: "22px",
+                                marginRight: "5px",
+                            }}
+                            src="https://www.vectorico.com/wp-content/uploads/2018/02/LinkedIn-Icon-Squircle-Dark.png"
+                            alt="LinkedIn"
+                        />
+                        Linkedin
+                    </Button>
+                    <Button onClick={handleShareTwitter}>
+                        <img
+                            style={{
+                                width: "20px",
+                                height: "20px",
+                                marginRight: "5px",
+                            }}
+                            src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png"
+                            alt="Twitter"
+                        />
+                        Twitter
+                    </Button>
+                </Box>
+            )}
+
+            <Typography
+                variant="caption"
+                color="textSecondary"
+                mt="25px"
+                marginLeft="0.4rem"
+            >
+                {formattedDate} • Spark
+            </Typography>
         </WidgetWrapper>
     );
 };
