@@ -41,7 +41,7 @@ const FriendListWidget = ({ userId }) => {
                 fontWeight="500"
                 sx={{ mb: "1.5rem" }}
             >
-                Friends List
+                Friend's List
             </Typography>
             <Box display="flex" flexDirection="column" gap="1.5rem">
                 {/* Display only the first 'displayedFriends' friends */}
