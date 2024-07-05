@@ -12,10 +12,7 @@ const index = () => {
             >
                 <h3
                     onClick={() =>
-                        window.open(
-                            "https://shanmukhanaparthi.pythonanywhere.com/",
-                            "_blank"
-                        )
+                        window.open("https://shanmukh25.vercel.app/", "_blank")
                     }
                 >
                     Spark by Shanmukh.
