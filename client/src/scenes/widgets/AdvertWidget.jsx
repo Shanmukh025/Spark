@@ -1,12 +1,21 @@
 import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
+import { useState } from "react";
+
+const trendingTopics = [
+    "#Spark",
+    "#Shanmukh",
+    "#Twitter",
+    "#Facebook",
+    "#SpaceX",
+];
 
 const AdvertWidget = () => {
     const { palette } = useTheme();
     const dark = palette.neutral.dark;
-    // const main = palette.neutral.main;
     const medium = palette.neutral.medium;
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
     return (
         <WidgetWrapper>
@@ -14,22 +23,21 @@ const AdvertWidget = () => {
                 <Typography color={dark} variant="h5" fontWeight="500">
                     Trending
                 </Typography>
-                {/* <Typography color={medium}>abc</Typography> */}
             </FlexBetween>
-            {/* <img
-                width="100%"
-                height="auto"
-                alt="abc"
-                src="img1"
-                style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
-            />
-            <FlexBetween>
-                <Typography color={main}>title1</Typography>
-                <Typography color={medium}>title2</Typography>
-            </FlexBetween>*/}
-            <Typography color={medium} m="0.5rem 0">
-                Trending on Spark.
-            </Typography>
+            {trendingTopics.map((topic, index) => (
+                <Typography
+                    key={index}
+                    color={
+                        hoveredIndex === index ? palette.primary.main : medium
+                    }
+                    m="0.5rem 0"
+                    onMouseOver={() => setHoveredIndex(index)}
+                    onMouseOut={() => setHoveredIndex(null)}
+                    style={{ cursor: "pointer" }}
+                >
+                    {topic}
+                </Typography>
+            ))}
         </WidgetWrapper>
     );
 };

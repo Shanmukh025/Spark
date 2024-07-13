@@ -1,7 +1,7 @@
-import { Box, Typography, Button, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
 
@@ -41,7 +41,7 @@ const FriendListWidget = ({ userId }) => {
                 fontWeight="500"
                 sx={{ mb: "1.5rem" }}
             >
-                Friend's List
+                Friends List
             </Typography>
             <Box display="flex" flexDirection="column" gap="1.5rem">
                 {/* Display only the first 'displayedFriends' friends */}
