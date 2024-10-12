@@ -3,13 +3,7 @@ import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 
-const trendingTopics = [
-    "#Spark",
-    "#Shanmukh",
-    "#Twitter",
-    "#Facebook",
-    "#SpaceX",
-];
+const trendingTopics = ["#Spark", "#Shanmukh", "#Twitter", "#Facebook"];
 
 const AdvertWidget = () => {
     const { palette } = useTheme();

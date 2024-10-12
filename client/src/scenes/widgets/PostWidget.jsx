@@ -82,7 +82,7 @@ const PostWidget = ({
         setNewComment("");
     };
 
-    const formattedDate = "25 Jun '24";
+    const formattedDate = "25 Jun 2024";
 
     const handleShareTwitter = (post) => {
         const url = `https://www.twitter.com/compose/post?text=Checkout this New Post from Spark :
