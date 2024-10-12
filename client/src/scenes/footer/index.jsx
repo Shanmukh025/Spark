@@ -20,7 +20,7 @@ const index = () => {
                         window.open("https://shanmukh25.vercel.app/", "_blank")
                     }
                 >
-                    Spark. Developed by Shanmukh.
+                    Developed by Shanmukh.
                 </h3>
             </footer>
         </>

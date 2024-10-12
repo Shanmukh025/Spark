@@ -107,6 +107,7 @@ const Navbar = () => {
                             sx={{ fontSize: "25px", cursor: "pointer" }}
                         />
                     </Tooltip>
+                    <Tooltip title="Available Soon!">
                     <button className="messagebtn">
                         <img
                             src={messenger}
@@ -120,6 +121,7 @@ const Navbar = () => {
                         />
                         Message
                     </button>
+                    </Tooltip>
                     <div className="profile">
                         <h3 onClick={handleClick}>{fullName}</h3>
                         <Tooltip title="My Account">
