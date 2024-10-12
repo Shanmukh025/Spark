@@ -46,7 +46,7 @@ const PostWidget = ({
 
     const patchLike = async () => {
         const response = await fetch(
-            `http://localhost:3001/posts/${postId}/like`,
+            `https://spark-yag0.onrender.com/posts/${postId}/like`,
             {
                 method: "PATCH",
                 headers: {
@@ -66,7 +66,7 @@ const PostWidget = ({
 
     const handleCommentSubmit = async () => {
         const response = await fetch(
-            `http://localhost:3001/posts/${postId}/comments`,
+            `https://spark-yag0.onrender.com/posts/${postId}/comments`,
             {
                 method: "POST",
                 headers: {
@@ -117,7 +117,7 @@ const PostWidget = ({
                     height="auto"
                     alt="post"
                     style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-                    src={`http://localhost:3001/assets/${picturePath}`}
+                    src={`https://spark-yag0.onrender.com/assets/${picturePath}`}
                 />
             )}
             <FlexBetween mt="0.5rem">
