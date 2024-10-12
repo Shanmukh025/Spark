@@ -108,19 +108,19 @@ const Navbar = () => {
                         />
                     </Tooltip>
                     <Tooltip title="Available Soon!">
-                    <button className="messagebtn">
-                        <img
-                            src={messenger}
-                            alt="logo"
-                            style={{
-                                height: "20px",
-                                width: "20px",
-                                marginBottom: "-4px",
-                                marginRight: "5px",
-                            }}
-                        />
-                        Message
-                    </button>
+                        <button className="messagebtn">
+                            <img
+                                src={messenger}
+                                alt="logo"
+                                style={{
+                                    height: "20px",
+                                    width: "20px",
+                                    marginBottom: "-4px",
+                                    marginRight: "5px",
+                                }}
+                            />
+                            Message
+                        </button>
                     </Tooltip>
                     <div className="profile">
                         <h3 onClick={handleClick}>{fullName}</h3>
