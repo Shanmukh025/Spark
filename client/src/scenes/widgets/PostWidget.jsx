@@ -90,12 +90,12 @@ const PostWidget = ({
         window.open(url, "_blank");
     };
 
-    const handleShareLinkedIn = (post) => {
-        // const url = `https://www.linkedin.com/shareArticle?summary=${encodeURIComponent(
-        //     description
-        // )}`;
-        // window.open(url, "_blank");
-    };
+    // const handleShareLinkedIn = (post) => {
+    // const url = `https://www.linkedin.com/shareArticle?summary=${encodeURIComponent(
+    //     description
+    // )}`;
+    // window.open(url, "_blank");
+    // };
 
     return (
         <WidgetWrapper m="2rem 0">
@@ -173,18 +173,6 @@ const PostWidget = ({
             )}
             {isShareOpen && (
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Button onClick={handleShareLinkedIn}>
-                        <img
-                            style={{
-                                width: "22px",
-                                height: "22px",
-                                marginRight: "5px",
-                            }}
-                            src="https://www.vectorico.com/wp-content/uploads/2018/02/LinkedIn-Icon-Squircle-Dark.png"
-                            alt="LinkedIn"
-                        />
-                        Linkedin
-                    </Button>
                     <Button onClick={handleShareTwitter}>
                         <img
                             style={{
