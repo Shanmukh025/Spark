@@ -90,12 +90,40 @@ const PostWidget = ({
         window.open(url, "_blank");
     };
 
-    // const handleShareLinkedIn = (post) => {
-    // const url = `https://www.linkedin.com/shareArticle?summary=${encodeURIComponent(
-    //     description
-    // )}`;
-    // window.open(url, "_blank");
-    // };
+    const renderDescriptionWithHashtagsAndLinks = (description) => {
+        const hashtagRegex = /#[\w]+/g; // Regex to match hashtags
+        const urlRegex = /(https?:\/\/[^\s]+)/g; // Regex to match URLs
+
+        const parts = description.split(/(\s+)/); // Split by spaces while preserving them
+
+        return parts.map((part, index) => {
+            if (urlRegex.test(part)) {
+                // Render links with underline and open in new tab
+                return (
+                    <a
+                        key={index}
+                        href={part}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            color: palette.primary.main,
+                            textDecoration: "underline",
+                        }}
+                    >
+                        {part}
+                    </a>
+                );
+            } else if (hashtagRegex.test(part)) {
+                // Render hashtags
+                return (
+                    <span key={index} style={{ color: palette.primary.main }}>
+                        {part}
+                    </span>
+                );
+            }
+            return part;
+        });
+    };
 
     return (
         <WidgetWrapper m="2rem 0">
@@ -109,7 +137,7 @@ const PostWidget = ({
                 color={main}
                 sx={{ mt: "1rem", ml: "0.4rem", fontSize: "1rem" }}
             >
-                {description}
+                {renderDescriptionWithHashtagsAndLinks(description)}
             </Typography>
             {picturePath && (
                 <img
@@ -142,8 +170,6 @@ const PostWidget = ({
                 </FlexBetween>
 
                 <IconButton onClick={() => setIsShareOpen(!isShareOpen)}>
-                    {" "}
-                    {/* Toggle share box */}
                     <ShareOutlined />
                 </IconButton>
             </FlexBetween>
