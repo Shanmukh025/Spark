@@ -9,17 +9,20 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     const token = useSelector((state) => state.token);
 
     const getPosts = async () => {
-        const response = await fetch("https://spark-yag0.onrender.com/posts", {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+            "https://spark-production-744e.up.railway.app/posts",
+            {
+                method: "GET",
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
     };
 
     const getUserPosts = async () => {
         const response = await fetch(
-            `https://spark-yag0.onrender.com/posts/${userId}/posts`,
+            `https://spark-production-744e.up.railway.app/posts/${userId}/posts`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },

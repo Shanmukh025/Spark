@@ -64,7 +64,7 @@ const Form = () => {
         formData.append("picturePath", values.picture.name);
 
         const savedUserResponse = await fetch(
-            "https://spark-yag0.onrender.com/auth/register",
+            "https://spark-production-744e.up.railway.app/auth/register",
             {
                 method: "POST",
                 body: formData,
@@ -80,7 +80,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "https://spark-yag0.onrender.com/auth/login",
+            "https://spark-production-744e.up.railway.app/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

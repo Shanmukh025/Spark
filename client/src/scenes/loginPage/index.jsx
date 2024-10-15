@@ -1,6 +1,6 @@
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import Form from "./Form";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import sparklogo from "../navbar/spark-logo.png";
+import Form from "./Form";
 
 const LoginPage = () => {
     const theme = useTheme();
@@ -28,7 +28,7 @@ const LoginPage = () => {
                 backgroundColor={theme.palette.background.alt}
             >
                 <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-                    Welcome to Spark, By Shanmukh. Spark Your Moments!
+                    Welcome to Spark, by Shanmukh. Spark Your Moments!
                 </Typography>
                 <Form />
             </Box>

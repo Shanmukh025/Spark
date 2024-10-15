@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
     const patchFriend = async () => {
         const response = await fetch(
-            `https://spark-yag0.onrender.com/users/${_id}/${friendId}`,
+            `https://spark-production-744e.up.railway.app/users/${_id}/${friendId}`,
             {
                 method: "PATCH",
                 headers: {
