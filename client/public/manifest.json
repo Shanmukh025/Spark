@@ -1,6 +1,7 @@
 {
   "short_name": "Spark",
-  "name": "Spark Social Media Application",
+  "name": "Spark Social Media Application Developed By Shanmukh Anaparthi.",
+  "description" : "Spark Social Media Application Developed By Shanmukh Anaparthi.",
   "icons": [
     {
       "src": "spark_logo.png",
