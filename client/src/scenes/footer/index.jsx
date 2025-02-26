@@ -8,6 +8,14 @@ const index = () => {
                     cursor: "pointer",
                 }}
             >
+                <iframe 
+                    src="https://xspark.instatus.com/embed-status/5d821429/dark-sm"
+                    width="230"
+                    height="61"
+                    frameBorder="0"
+                    scrolling="no"
+                    style={{ border: "none" }}
+                />
                 <h3
                     style={{ textDecoration: "none" }}
                     onMouseOver={(e) =>
@@ -22,14 +30,6 @@ const index = () => {
                 >
                     Developed by Shanmukh.
                 </h3>
-                <iframe 
-                    src="https://xspark.instatus.com/embed-status/5d821429/dark-sm"
-                    width="230"
-                    height="61"
-                    frameBorder="0"
-                    scrolling="no"
-                    style={{ border: "none" }}
-                />
             </footer>
         </>
     );
