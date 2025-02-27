@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
                 width={size}
                 height={size}
                 alt="user"
-                src={`https://spark-production-744e.up.railway.app/assets/${image}`}
+                src={`https://xspark-production.up.railway.app/assets/${image}`}
             />
         </Box>
     );
