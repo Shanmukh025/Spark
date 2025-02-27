@@ -22,7 +22,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
     const getUserPosts = async () => {
         const response = await fetch(
-            `https://spark-production-744e.up.railway.app/posts/${userId}/posts`,
+            `https://xspark-production.up.railway.app/posts/${userId}/posts`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
