@@ -80,7 +80,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "https://spark-production-744e.up.railway.app/auth/login",
+            "https://xspark-production.up.railway.app/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
