@@ -22,7 +22,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
     const getUser = async () => {
         const response = await fetch(
-            `https://spark-production-744e.up.railway.app/users/${userId}`,
+            `https://xspark-production.up.railway.app/users/${userId}`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
