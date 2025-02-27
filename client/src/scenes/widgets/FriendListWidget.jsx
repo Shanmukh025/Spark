@@ -14,7 +14,7 @@ const FriendListWidget = ({ userId }) => {
 
     const getFriends = async () => {
         const response = await fetch(
-            `https://spark-production-744e.up.railway.app/users/${userId}/friends`,
+            `https://xspark-production.up.railway.app/users/${userId}/friends`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
