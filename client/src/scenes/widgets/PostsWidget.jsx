@@ -10,7 +10,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
     const getPosts = async () => {
         const response = await fetch(
-            "https://spark-production-744e.up.railway.app/posts",
+            "https://spark-yag0.onrender.com/posts",
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
