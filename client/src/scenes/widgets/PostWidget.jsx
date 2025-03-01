@@ -46,7 +46,7 @@ const PostWidget = ({
 
     const patchLike = async () => {
         const response = await fetch(
-            `https://xspark-production.up.railway.app/posts/${postId}/like`,
+            `https://spark-yag0.onrender.com/posts/${postId}/like`,
             {
                 method: "PATCH",
                 headers: {
