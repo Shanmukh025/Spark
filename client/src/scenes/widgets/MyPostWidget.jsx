@@ -47,7 +47,7 @@ const MyPostWidget = ({ picturePath }) => {
         }
 
         const response = await fetch(
-            `https://xspark-production.up.railway.app/posts`,
+            `https://spark-yag0.onrender.com/posts`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
