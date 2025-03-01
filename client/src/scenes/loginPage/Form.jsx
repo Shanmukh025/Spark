@@ -64,7 +64,7 @@ const Form = () => {
         formData.append("picturePath", values.picture.name);
 
         const savedUserResponse = await fetch(
-            "https://spark-production-744e.up.railway.app/auth/register",
+            "https://spark-yag0.onrender.com/auth/register",
             {
                 method: "POST",
                 body: formData,
