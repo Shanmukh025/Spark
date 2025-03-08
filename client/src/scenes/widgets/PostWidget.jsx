@@ -46,7 +46,7 @@ const PostWidget = ({
 
     const patchLike = async () => {
         const response = await fetch(
-            `https://spark-yag0.onrender.com/posts/${postId}/like`,
+            `https://localhost:3001/posts/${postId}/like`,
             {
                 method: "PATCH",
                 headers: {
@@ -66,7 +66,7 @@ const PostWidget = ({
 
     const handleCommentSubmit = async () => {
         const response = await fetch(
-            `https://spark-production-744e.up.railway.app/posts/${postId}/comments`,
+            `https://localhost:3001/posts/${postId}/comments`,
             {
                 method: "POST",
                 headers: {
@@ -81,7 +81,6 @@ const PostWidget = ({
         dispatch(setPost({ post: updatedPost }));
         setNewComment("");
     };
-
 
     const handleShareTwitter = (post) => {
         const url = `https://www.twitter.com/compose/post?text=Checkout this New Post from Spark :
@@ -144,7 +143,7 @@ const PostWidget = ({
                     height="auto"
                     alt="post"
                     style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-                    src={`https://spark-production-744e.up.railway.app/assets/${picturePath}`}
+                    src={`=https://localhost:3001/assets/${picturePath}`}
                 />
             )}
             <FlexBetween mt="0.5rem">

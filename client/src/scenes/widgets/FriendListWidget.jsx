@@ -14,7 +14,7 @@ const FriendListWidget = ({ userId }) => {
 
     const getFriends = async () => {
         const response = await fetch(
-            `https://spark-yag0.onrender.com/users/${userId}/friends`,
+            `https://localhost:3001/users/${userId}/friends`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
