@@ -121,29 +121,28 @@ const UserWidget = ({ userId, picturePath }) => {
                     Social Profiles
                 </Typography>
 
-                <FlexBetween
-                    gap="1rem"
-                    mb="0.5rem"
-                    sx={{
-                        cursor: "pointer",
-                        "&:hover": { color: palette.neutral.dark },
-                    }}
-                    onClick={() =>
-                        window.open(
-                            `https://instagram.com/${ig || ""}`,
-                            "_blank"
-                        )
-                    }
-                >
-                    <FlexBetween gap="1rem">
+                <FlexBetween gap="1rem" mb="0.5rem">
+                    <FlexBetween
+                        gap="1rem"
+                        sx={{
+                            cursor: "pointer",
+                            "&:hover": { color: palette.neutral.dark },
+                        }}
+                        onClick={() =>
+                            window.open(
+                                `https://instagram.com/${ig || ""}`,
+                                "_blank"
+                            )
+                        }
+                    >
                         <InstagramIcon fontSize="large" sx={{ color: main }} />
                         <Box>
-                            <Typography fontWeight="700">
-                                {ig || "IG User"}
+                            <Typography fontWeight="600">
+                                {ig || "Insta User"}
                             </Typography>
                         </Box>
+                        <ArrowOutwardIcon sx={{ color: main }} />
                     </FlexBetween>
-                    <ArrowOutwardIcon sx={{ color: main }} />
                 </FlexBetween>
             </Box>
         </WidgetWrapper>
