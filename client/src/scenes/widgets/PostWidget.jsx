@@ -46,7 +46,7 @@ const PostWidget = ({
 
     const patchLike = async () => {
         const response = await fetch(
-            `https://localhost:3001/posts/${postId}/like`,
+            `https://xspark-production.up.railway.app/posts/${postId}/like`,
             {
                 method: "PATCH",
                 headers: {
@@ -66,7 +66,7 @@ const PostWidget = ({
 
     const handleCommentSubmit = async () => {
         const response = await fetch(
-            `https://spark-yag0.onrender.com/posts/${postId}/comments`,
+            `https://xspark-production.up.railway.app/posts/${postId}/comments`,
             {
                 method: "POST",
                 headers: {
@@ -143,7 +143,7 @@ const PostWidget = ({
                     height="auto"
                     alt="post"
                     style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-                    src={`https://spark-yag0.onrender.com/assets/${picturePath}`}
+                    src={`https://xspark-production.up.railway.app/assets/${picturePath}`}
                 />
             )}
             <FlexBetween mt="0.5rem">

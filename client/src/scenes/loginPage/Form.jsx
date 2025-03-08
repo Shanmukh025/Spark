@@ -17,18 +17,18 @@ import { setLogin } from "state";
 import * as yup from "yup";
 
 const registerSchema = yup.object().shape({
-    firstName: yup.string().required("required"),
-    lastName: yup.string().required("required"),
-    email: yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required"),
-    location: yup.string().required("required"),
-    occupation: yup.string().required("required"),
-    picture: yup.string().required("required"),
+    firstName: yup.string().required("First Name is Required*"),
+    lastName: yup.string().required("Last Name is Required*"),
+    email: yup.string().email("Invalid Email*").required("Email is Required*"),
+    password: yup.string().required("Password is Required*"),
+    location: yup.string().required("Location is Required*"),
+    occupation: yup.string().required("Occupation is Required*"),
+    picture: yup.string().required("Profile Picture is Required*"),
 });
 
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required"),
+    email: yup.string().email("Invalid Email*").required("Email is Required*"),
+    password: yup.string().required("Password is Required*"),
 });
 
 const initialValuesRegister = {
@@ -64,7 +64,7 @@ const Form = () => {
         formData.append("picturePath", values.picture.name);
 
         const savedUserResponse = await fetch(
-            "https://localhost:3001/auth/register",
+            "https://xspark-production.up.railway.app/auth/register",
             {
                 method: "POST",
                 body: formData,
@@ -80,7 +80,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "https://localhost:3001/auth/login",
+            "https://xspark-production.up.railway.app/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -291,17 +291,16 @@ const Form = () => {
                                 resetForm();
                             }}
                             sx={{
-                                textDecoration: "underline",
                                 color: palette.primary.main,
                                 "&:hover": {
                                     cursor: "pointer",
-                                    color: palette.primary.light,
+                                    textDecoration: "underline",
                                 },
                             }}
                         >
                             {isLogin
-                                ? "New To Spark? Sign Up here."
-                                : "Already have an account? Login here."}
+                                ? "New To Spark? Sign Up."
+                                : "Have an Account? Login."}
                         </Typography>
                     </Box>
                 </form>

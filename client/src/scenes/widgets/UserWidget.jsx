@@ -21,10 +21,13 @@ const UserWidget = ({ userId, picturePath }) => {
     const main = palette.neutral.main;
 
     const getUser = async () => {
-        const response = await fetch(`https://localhost:3001/users/${userId}`, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+            `https://xspark-production.up.railway.app/users/${userId}`,
+            {
+                method: "GET",
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         const data = await response.json();
         setUser(data);
     };
@@ -124,28 +127,18 @@ const UserWidget = ({ userId, picturePath }) => {
 
                 <FlexBetween gap="1rem" mb="0.5rem">
                     <FlexBetween gap="1rem">
-                        <img src="../assets/twitter.png" alt="twitter" />
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png"
+                            alt="twitter"
+                            height="30"
+                            width="30"
+                        />
                         <Box>
                             <Typography color={main} fontWeight="500">
                                 Twitter
                             </Typography>
                             <Typography color={medium}>
                                 Social Network
-                            </Typography>
-                        </Box>
-                    </FlexBetween>
-                    <EditOutlined sx={{ color: main }} />
-                </FlexBetween>
-
-                <FlexBetween gap="1rem">
-                    <FlexBetween gap="1rem">
-                        <img src="../assets/linkedin.png" alt="linkedin" />
-                        <Box>
-                            <Typography color={main} fontWeight="500">
-                                Linkedin
-                            </Typography>
-                            <Typography color={medium}>
-                                Network Platform
                             </Typography>
                         </Box>
                     </FlexBetween>
