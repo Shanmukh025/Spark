@@ -8,12 +8,13 @@ const index = () => {
                     cursor: "pointer",
                 }}
             >
-                <iframe 
+                <iframe
                     src="https://xspark.instatus.com/embed-status/5d821429/dark-sm"
-                    width="230"
-                    height="61"
+                    width="220"
+                    height="60"
                     frameBorder="0"
                     scrolling="no"
+                    title="SPARK Status"
                     style={{ border: "none" }}
                 />
                 <h3
