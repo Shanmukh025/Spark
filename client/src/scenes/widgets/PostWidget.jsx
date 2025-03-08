@@ -156,14 +156,14 @@ const PostWidget = ({
                                 <FavoriteBorderOutlined />
                             )}
                         </IconButton>
-                        <Typography>{likeCount}</Typography>
+                        <Typography>{likeCount} Likes</Typography>
                     </FlexBetween>
 
                     <FlexBetween gap="0.3rem">
                         <IconButton onClick={() => setIsComments(!isComments)}>
                             <ChatBubbleOutlineOutlined />
                         </IconButton>
-                        <Typography>{comments.length}</Typography>
+                        <Typography>{comments.length} Comments</Typography>
                     </FlexBetween>
                 </FlexBetween>
 

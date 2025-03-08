@@ -1,8 +1,6 @@
-import {
-    EditOutlined,
-    LocationOnOutlined,
-    WorkOutlineOutlined,
-} from "@mui/icons-material";
+import { LocationOnOutlined, WorkOutlineOutlined } from "@mui/icons-material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import UserImage from "components/UserImage";
@@ -16,7 +14,6 @@ const UserWidget = ({ userId, picturePath }) => {
     const { palette } = useTheme();
     const navigate = useNavigate();
     const token = useSelector((state) => state.token);
-    const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
 
@@ -40,7 +37,7 @@ const UserWidget = ({ userId, picturePath }) => {
         return null;
     }
 
-    const { firstName, lastName, location, occupation, friends } = user;
+    const { firstName, lastName, location, occupation, ig, friends } = user;
 
     return (
         <WidgetWrapper>
@@ -55,11 +52,10 @@ const UserWidget = ({ userId, picturePath }) => {
                     <Box>
                         <Typography
                             variant="h4"
-                            color={dark}
                             fontWeight="500"
                             sx={{
                                 "&:hover": {
-                                    color: palette.primary.light,
+                                    color: palette.neutral.dark,
                                     cursor: "pointer",
                                 },
                             }}
@@ -67,7 +63,7 @@ const UserWidget = ({ userId, picturePath }) => {
                             {firstName} {lastName}
                         </Typography>
                         <Typography color={medium}>
-                            {friends.length} friends
+                            {friends.length} Friends
                         </Typography>
                     </Box>
                 </FlexBetween>
@@ -79,14 +75,14 @@ const UserWidget = ({ userId, picturePath }) => {
             <Box p="1rem 0">
                 <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
                     <LocationOnOutlined fontSize="large" sx={{ color: main }} />
-                    <Typography color={medium}>{location}</Typography>
+                    <Typography fontWeight="500">{location}</Typography>
                 </Box>
                 <Box display="flex" alignItems="center" gap="1rem">
                     <WorkOutlineOutlined
                         fontSize="large"
                         sx={{ color: main }}
                     />
-                    <Typography color={medium}>{occupation}</Typography>
+                    <Typography fontWeight="500">{occupation}</Typography>
                 </Box>
             </Box>
 
@@ -125,24 +121,29 @@ const UserWidget = ({ userId, picturePath }) => {
                     Social Profiles
                 </Typography>
 
-                <FlexBetween gap="1rem" mb="0.5rem">
+                <FlexBetween
+                    gap="1rem"
+                    mb="0.5rem"
+                    sx={{
+                        cursor: "pointer",
+                        "&:hover": { color: palette.neutral.dark },
+                    }}
+                    onClick={() =>
+                        window.open(
+                            `https://instagram.com/${ig || ""}`,
+                            "_blank"
+                        )
+                    }
+                >
                     <FlexBetween gap="1rem">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png"
-                            alt="twitter"
-                            height="30"
-                            width="30"
-                        />
+                        <InstagramIcon fontSize="large" sx={{ color: main }} />
                         <Box>
-                            <Typography color={main} fontWeight="500">
-                                Twitter
-                            </Typography>
-                            <Typography color={medium}>
-                                Social Network
+                            <Typography fontWeight="700">
+                                {ig || "IG User"}
                             </Typography>
                         </Box>
                     </FlexBetween>
-                    <EditOutlined sx={{ color: main }} />
+                    <ArrowOutwardIcon sx={{ color: main }} />
                 </FlexBetween>
             </Box>
         </WidgetWrapper>
