@@ -138,7 +138,7 @@ const UserWidget = ({ userId, picturePath }) => {
                         <InstagramIcon fontSize="large" sx={{ color: main }} />
                         <Box>
                             <Typography fontWeight="600">
-                                {ig || "Insta User"}
+                                {ig || "Instagram"}
                             </Typography>
                         </Box>
                         <ArrowOutwardIcon sx={{ color: main }} />
