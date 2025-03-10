@@ -4,7 +4,6 @@ import {
     LightMode,
     Menu as MenuIcon,
     NotificationsActiveRounded,
-    Search,
 } from "@mui/icons-material";
 import Logout from "@mui/icons-material/Logout";
 import PersonAdd from "@mui/icons-material/PersonAdd";
@@ -12,7 +11,6 @@ import Settings from "@mui/icons-material/Settings";
 import {
     Box,
     IconButton,
-    InputBase,
     ListItemIcon,
     Menu,
     MenuItem,
@@ -26,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 import { setLogout, setMode } from "../../state";
 import messenger from "./messenger.svg";
+import SearchBar from "./Searchbar";
 import sparklogo from "./spark-logo.png";
 
 const Navbar = () => {
@@ -39,6 +38,7 @@ const Navbar = () => {
     const fullName = `${user.firstName} ${user.lastName}`;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const token = useSelector((state) => state.token);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -69,20 +69,7 @@ const Navbar = () => {
                     }}
                 />
 
-                {isNonMobileScreens && (
-                    <FlexBetween
-                        backgroundColor={theme.palette.neutral.light}
-                        borderRadius="9px"
-                        gap="2rem"
-                        padding="0.3rem 1rem"
-                        fontWeight="700"
-                    >
-                        <InputBase placeholder="Search Users..." />
-                        <IconButton>
-                            <Search />
-                        </IconButton>
-                    </FlexBetween>
-                )}
+                {isNonMobileScreens && <SearchBar token={token} />}
             </FlexBetween>
             {isNonMobileScreens ? (
                 <FlexBetween gap="2rem">
@@ -267,19 +254,8 @@ const Navbar = () => {
                                         <h3>{fullName}</h3>
                                     </div>
                                 </div>
-                                <FlexBetween
-                                    backgroundColor={
-                                        theme.palette.neutral.light
-                                    }
-                                    borderRadius="9px"
-                                    gap="1rem"
-                                    padding="0.1rem 0.6rem"
-                                >
-                                    <InputBase placeholder="Search Users..." />
-                                    <IconButton>
-                                        <Search />
-                                    </IconButton>
-                                </FlexBetween>
+                                <SearchBar token={token} />
+
                                 <button className="alertsbtn">
                                     <img
                                         src="https://www.svgrepo.com/show/390671/profile-user-avatar-man-person.svg"
