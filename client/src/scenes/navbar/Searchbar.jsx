@@ -105,7 +105,7 @@ const SearchBar = ({ token }) => {
                                 : "none",
                     }}
                 >
-                    {filteredUsers.map((user, index) => (
+                    {filteredUsers.slice(0, 6).map((user, index) => (
                         <Box key={user._id}>
                             <ListItem
                                 sx={{
@@ -119,7 +119,7 @@ const SearchBar = ({ token }) => {
                                     {user.firstName} {user.lastName}
                                 </Typography>
                             </ListItem>
-                            {index < filteredUsers.length - 1 && (
+                            {index < Math.min(filteredUsers.length, 6) - 1 && (
                                 <Divider
                                     sx={{
                                         backgroundColor: theme.palette.divider,
