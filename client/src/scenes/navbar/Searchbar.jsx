@@ -28,10 +28,13 @@ const SearchBar = ({ token }) => {
 
             try {
                 console.log("Fetching users...");
-                const response = await fetch("http://localhost:3001/users", {
-                    method: "GET",
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const response = await fetch(
+                    "https://xspark-production.up.railway.app/users",
+                    {
+                        method: "GET",
+                        headers: { Authorization: `Bearer ${token}` },
+                    }
+                );
 
                 if (!response.ok) throw new Error("Failed to fetch users");
 
