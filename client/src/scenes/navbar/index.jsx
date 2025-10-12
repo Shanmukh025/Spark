@@ -110,7 +110,9 @@ const Navbar = () => {
                         </button>
                     </Tooltip>
                     <div className="profile">
-                        <h3 onClick={handleClick}>{fullName}</h3>
+                        <Tooltip title={`${fullName}`}>
+                            <h3 onClick={handleClick}>{fullName}</h3>
+                        </Tooltip>
                         <Tooltip title="My Account">
                             <IconButton
                                 onClick={handleClick}
