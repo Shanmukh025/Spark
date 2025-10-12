@@ -1,5 +1,5 @@
 const message = () => {
-    return <div>message</div>;
+    return <div>Messaging Feature Coming Soon.</div>;
 };
 
 export default message;
