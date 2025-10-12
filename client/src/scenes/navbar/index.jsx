@@ -1,4 +1,4 @@
-/*Shanmukhs*/
+/* Shanmukh's Navbar Enhanced */
 import {
     Close,
     DarkMode,
@@ -15,10 +15,11 @@ import {
     Menu,
     MenuItem,
     Tooltip,
+    Typography,
     useMediaQuery,
     useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
@@ -32,21 +33,23 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
     const isNonMobileScreens = useMediaQuery("(min-width: 1100px)");
     const theme = useTheme();
     const alt = theme.palette.background.alt;
     const fullName = `${user.firstName} ${user.lastName}`;
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const token = useSelector((state) => state.token);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [notifAnchor, setNotifAnchor] = useState(null);
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const openProfileMenu = Boolean(anchorEl);
+    const openNotifMenu = Boolean(notifAnchor);
+
+    const handleProfileClick = (event) => setAnchorEl(event.currentTarget);
+    const handleNotifClick = (event) => setNotifAnchor(event.currentTarget);
+
+    const handleCloseProfile = () => setAnchorEl(null);
+    const handleCloseNotif = () => setNotifAnchor(null);
 
     return (
         <FlexBetween padding="0.1rem 5%" backgroundColor={alt}>
@@ -61,16 +64,14 @@ const Navbar = () => {
                         cursor: "pointer",
                         transition: "transform 0.3s ease",
                     }}
-                    onMouseOver={(e) => {
-                        e.target.style.transform = "scale(1.02)";
-                    }}
-                    onMouseOut={(e) => {
-                        e.target.style.transform = "scale(1)";
-                    }}
+                    onMouseOver={(e) =>
+                        (e.target.style.transform = "scale(1.02)")
+                    }
+                    onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
                 />
-
                 {isNonMobileScreens && <SearchBar token={token} />}
             </FlexBetween>
+
             {isNonMobileScreens ? (
                 <FlexBetween gap="2rem">
                     <IconButton onClick={() => dispatch(setMode())}>
@@ -89,11 +90,76 @@ const Navbar = () => {
                             </Tooltip>
                         )}
                     </IconButton>
+
+                    {/* 🔔 Notifications */}
                     <Tooltip title="Notifications">
-                        <NotificationsActiveRounded
-                            sx={{ fontSize: "25px", cursor: "pointer" }}
-                        />
+                        <IconButton onClick={handleNotifClick}>
+                            <NotificationsActiveRounded
+                                sx={{ fontSize: "25px", cursor: "pointer" }}
+                            />
+                        </IconButton>
                     </Tooltip>
+                    <Menu
+                        anchorEl={notifAnchor}
+                        open={openNotifMenu}
+                        onClose={handleCloseNotif}
+                        PaperProps={{
+                            elevation: 0,
+                            sx: {
+                                mt: 1.5,
+                                backgroundColor:
+                                    theme.palette.background.default,
+                                color: theme.palette.text.primary,
+                                borderRadius: "9px",
+                                padding: "0.7rem 1.5rem",
+                                minWidth: "200px",
+                                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                "&::before": {
+                                    content: '""',
+                                    display: "block",
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 14,
+                                    width: 10,
+                                    height: 10,
+                                    bgcolor: "background.paper",
+                                    transform: "translateY(-50%) rotate(45deg)",
+                                    zIndex: 0,
+                                },
+                            },
+                        }}
+                        anchorOrigin={{
+                            horizontal: "right",
+                            vertical: "bottom",
+                        }}
+                        transformOrigin={{
+                            horizontal: "right",
+                            vertical: "top",
+                        }}
+                    >
+                        {" "}
+                        <Typography
+                            sx={{
+                                textAlign: "center",
+                                color: theme.palette.text.secondary,
+                                fontWeight: 1000,
+                            }}
+                        >
+                            Welcome to Spark, {fullName}!
+                        </Typography>
+                        <Typography
+                            sx={{
+                                textAlign: "center",
+                                color: theme.palette.text.secondary,
+                                fontWeight: 500,
+                                mt: "0.9rem",
+                            }}
+                        >
+                            No New Notifications.
+                        </Typography>
+                    </Menu>
+
+                    {/* 💬 Messages */}
                     <Tooltip title="Coming Soon!">
                         <button className="messagebtn">
                             <img
@@ -109,48 +175,40 @@ const Navbar = () => {
                             Message
                         </button>
                     </Tooltip>
+
+                    {/* 👤 Profile */}
                     <div className="profile">
-                        <Tooltip title={`${fullName}`}>
-                            <h3 onClick={handleClick}>{fullName}</h3>
+                        <Tooltip title={fullName}>
+                            <h3 onClick={handleProfileClick}>{fullName}</h3>
                         </Tooltip>
                         <Tooltip title="My Account">
                             <IconButton
-                                onClick={handleClick}
+                                onClick={handleProfileClick}
                                 size="small"
                                 sx={{ ml: 2 }}
                                 style={{
                                     marginLeft: "-12px",
                                     marginTop: "-7px",
                                 }}
-                                aria-controls={
-                                    open ? "account-menu" : undefined
-                                }
-                                aria-haspopup="true"
-                                aria-expanded={open ? "true" : undefined}
                             >
-                                <div className="user" value={{ fullName }}>
+                                <div className="user">
                                     <h4>▾</h4>
                                 </div>
                             </IconButton>
                         </Tooltip>
+
+                        {/* Account Menu */}
                         <Menu
                             anchorEl={anchorEl}
                             id="account-menu"
-                            open={open}
-                            onClose={handleClose}
-                            onClick={handleClose}
+                            open={openProfileMenu}
+                            onClose={handleCloseProfile}
                             PaperProps={{
                                 elevation: 0,
                                 sx: {
                                     overflow: "visible",
                                     filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                                     mt: 1.5,
-                                    "& .MuiAvatar-root": {
-                                        width: 32,
-                                        height: 32,
-                                        ml: -0.5,
-                                        mr: 1,
-                                    },
                                     "&::before": {
                                         content: '""',
                                         display: "block",
@@ -238,80 +296,6 @@ const Navbar = () => {
                                     <Close />
                                 </IconButton>
                             </Box>
-                            <FlexBetween
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent="center"
-                                alignItems="center"
-                                gap="3rem"
-                            >
-                                <div className="profile">
-                                    <div className="user" values={{ fullName }}>
-                                        <h3>{fullName}</h3>
-                                    </div>
-                                </div>
-                                <SearchBar token={token} />
-
-                                <button className="alertsbtn">
-                                    <img
-                                        src="https://www.svgrepo.com/show/390671/profile-user-avatar-man-person.svg"
-                                        alt="logo"
-                                        style={{
-                                            height: "25px",
-                                            width: "25px",
-                                            marginBottom: "-6px",
-                                            marginRight: "5px",
-                                        }}
-                                    />
-                                    Profile
-                                </button>
-                                <button className="alertsbtn">
-                                    <img
-                                        src="https://www.svgrepo.com/show/489066/notifications-active.svg"
-                                        alt="logo"
-                                        style={{
-                                            height: "25px",
-                                            width: "25px",
-                                            marginBottom: "-6px",
-                                            marginRight: "5px",
-                                        }}
-                                    />
-                                    Alerts
-                                </button>
-
-                                <button
-                                    className="alertsbtn"
-                                    onClick={() => dispatch(setLogout())}
-                                >
-                                    <img
-                                        src="https://www.svgrepo.com/show/509151/logout.svg"
-                                        alt="logo"
-                                        style={{
-                                            height: "25px",
-                                            width: "25px",
-                                            marginBottom: "-6px",
-                                            marginRight: "5px",
-                                        }}
-                                    />
-                                    Logout
-                                </button>
-                                <IconButton
-                                    onClick={() => dispatch(setMode())}
-                                    sx={{ fontSize: "25px" }}
-                                >
-                                    {theme.palette.mode === "dark" ? (
-                                        <LightMode
-                                            sx={{
-                                                color: theme.palette.neutral
-                                                    .dark,
-                                                fontSize: "25px",
-                                            }}
-                                        />
-                                    ) : (
-                                        <DarkMode sx={{ fontSize: "25px" }} />
-                                    )}
-                                </IconButton>
-                            </FlexBetween>
                         </Box>
                     )}
                 </FlexBetween>
