@@ -29,7 +29,7 @@ const SearchBar = ({ token }) => {
             try {
                 console.log("Fetching users...");
                 const response = await fetch(
-                    "https://xspark-production.up.railway.app/users",
+                    "https://spark-yag0.onrender.com/users",
                     {
                         method: "GET",
                         headers: { Authorization: `Bearer ${token}` },
