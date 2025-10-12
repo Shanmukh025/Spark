@@ -95,7 +95,7 @@ const Navbar = () => {
                             sx={{ fontSize: "25px", cursor: "pointer" }}
                         />
                     </Tooltip>
-                    <Tooltip title="Available Soon!">
+                    <Tooltip title="Coming Soon!">
                         <button className="messagebtn">
                             <img
                                 src={messenger}
