@@ -8,7 +8,6 @@ import {
 } from "@mui/icons-material";
 import Logout from "@mui/icons-material/Logout";
 import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import {
     Box,
     IconButton,
@@ -180,12 +179,6 @@ const Navbar = () => {
                                 </ListItemIcon>
                                 Add account
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <ListItemIcon>
-                                    <Settings fontSize="small" />
-                                </ListItemIcon>
-                                Settings
-                            </MenuItem>
                             <MenuItem onClick={() => dispatch(setLogout())}>
                                 <ListItemIcon>
                                     <Logout fontSize="small" />
@@ -283,19 +276,7 @@ const Navbar = () => {
                                     />
                                     Alerts
                                 </button>
-                                <button className="alertsbtn">
-                                    <img
-                                        src="https://www.svgrepo.com/show/111206/settings.svg"
-                                        alt="logo"
-                                        style={{
-                                            height: "25px",
-                                            width: "25px",
-                                            marginBottom: "-6px",
-                                            marginRight: "5px",
-                                        }}
-                                    />
-                                    Settings
-                                </button>
+
                                 <button
                                     className="alertsbtn"
                                     onClick={() => dispatch(setLogout())}
