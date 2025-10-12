@@ -83,10 +83,11 @@ const PostWidget = ({
     };
 
     const handleShareTwitter = (post) => {
-    const url = `https://www.twitter.com/compose/post?text=Checkout this New Post from Spark:%0A%0A${encodeURIComponent(description)}%0A%0Ahttps://xspark.vercel.app/`;
-    window.open(url, "_blank");
-};
-
+        const url = `https://www.x.com/compose/post?text=Checkout this New Post from Spark:%0A%0A${encodeURIComponent(
+            description
+        )}%0A%0Ahttps://xspark.vercel.app/`;
+        window.open(url, "_blank");
+    };
 
     const renderDescriptionWithHashtagsAndLinks = (description) => {
         const hashtagRegex = /#[\w]+/g; // Regex to match hashtags

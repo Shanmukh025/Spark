@@ -2,8 +2,8 @@ import {
     AttachFileOutlined,
     DeleteOutlined,
     EditOutlined,
+    GifBoxOutlined,
     ImageOutlined,
-    MicOutlined,
     MoreHorizOutlined,
     VideoFileOutlined,
 } from "@mui/icons-material";
@@ -96,7 +96,7 @@ const MyPostWidget = ({ picturePath }) => {
                                 >
                                     <input {...getInputProps()} />
                                     {!image ? (
-                                        <p>Add An Image/ G.I.F</p>
+                                        <p>Add or Drop An Image</p>
                                     ) : (
                                         <FlexBetween>
                                             <Typography>
@@ -132,6 +132,15 @@ const MyPostWidget = ({ picturePath }) => {
                         Image
                     </Typography>
                 </FlexBetween>
+                <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+                    <GifBoxOutlined sx={{ color: mediumMain }} />
+                    <Typography
+                        color={mediumMain}
+                        sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+                    >
+                        GIF
+                    </Typography>
+                </FlexBetween>
 
                 {isNonMobileScreens ? (
                     <>
@@ -145,11 +154,6 @@ const MyPostWidget = ({ picturePath }) => {
                             <Typography color={mediumMain}>
                                 Attachment
                             </Typography>
-                        </FlexBetween>
-
-                        <FlexBetween gap="0.25rem">
-                            <MicOutlined sx={{ color: mediumMain }} />
-                            <Typography color={mediumMain}>Audio</Typography>
                         </FlexBetween>
                     </>
                 ) : (
