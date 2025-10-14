@@ -22,12 +22,11 @@ const SearchBar = ({ token }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             if (!token) {
-                console.error("Token is missing!");
+                console.error("Auth Token Error!");
                 return;
             }
 
             try {
-                console.log("Fetching users...");
                 const response = await fetch(
                     "https://spark-yag0.onrender.com/users",
                     {
@@ -39,7 +38,6 @@ const SearchBar = ({ token }) => {
                 if (!response.ok) throw new Error("Failed to fetch users");
 
                 const data = await response.json();
-                console.log("Users fetched:", data);
                 setUsers(data);
             } catch (error) {
                 console.error("Error fetching users:", error);
