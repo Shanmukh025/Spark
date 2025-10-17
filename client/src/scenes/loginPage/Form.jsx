@@ -23,7 +23,7 @@ const registerSchema = yup.object().shape({
   password: yup.string().required("Password is Required*"),
   location: yup.string().required("Location is Required*"),
   occupation: yup.string().required("Occupation is Required*"),
-  picture: yup.string().required("Profile Picture is Required*"),
+  picture: yup.mixed().required("Profile Picture is Required*"),
 });
 
 const loginSchema = yup.object().shape({
@@ -62,7 +62,7 @@ const Form = () => {
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append("picturePath", values.picture.name);
+    formData.append("picture", values.picture);
 
     const savedUserResponse = await fetch(
       "https://spark-yag0.onrender.com/auth/register",
@@ -249,43 +249,15 @@ const Form = () => {
                 backgroundColor: palette.primary.main,
                 color: palette.background.alt,
                 "&:hover": { color: palette.primary.main },
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
               }}
             >
-              {loading ? (
-                <>
-                  <span>{isLogin ? "Logging You In..." : "Creating Your Spark ID..."}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="18"
-                    height="18"
-                    style={{
-                      fill: "none",
-                      stroke: palette.background.alt,
-                      strokeWidth: "2",
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      animation: "spin 1s linear infinite",
-                    }}
-                  >
-                    <path d="M3 3l18 18M21 3L3 21" />
-                  </svg>
-                  <style>
-                    {`
-                      @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                      }
-                    `}
-                  </style>
-                </>
-              ) : (
-                <span>{isLogin ? "LOGIN" : "REGISTER"}</span>
-              )}
+              {loading
+                ? isLogin
+                  ? "Logging You In..."
+                  : "Creating Your Spark ID..."
+                : isLogin
+                ? "LOGIN"
+                : "REGISTER"}
             </Button>
 
             <Typography
