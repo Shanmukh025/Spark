@@ -1,13 +1,13 @@
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import {
-  Alert,
-  Box,
-  Button,
-  Snackbar,
-  TextField,
-  Typography,
-  useMediaQuery,
-  useTheme,
+    Alert,
+    Box,
+    Button,
+    Snackbar,
+    TextField,
+    Typography,
+    useMediaQuery,
+    useTheme,
 } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import { Formik } from "formik";
@@ -59,54 +59,76 @@ const Form = () => {
     const [loading, setLoading] = useState(false);
 
     // Snackbar state
-    const [snackOpen, setSnackOpen] = useState(false);
-    const [snackMessage, setSnackMessage] = useState("");
-    const [snackSeverity, setSnackSeverity] = useState("success");
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: "",
+        severity: "info",
+    });
 
-    const handleSnackClose = () => setSnackOpen(false);
+    const handleSnackbarClose = () => {
+        setSnackbar((prev) => ({ ...prev, open: false }));
+    };
 
+    // ---------------------- REGISTER FUNCTION ----------------------
     const register = async (values, onSubmitProps) => {
-        setLoading(true);
         try {
+            setLoading(true);
             const formData = new FormData();
-            for (let value in values) {
-                formData.append(value, values[value]);
-            }
+            formData.append("firstName", values.firstName);
+            formData.append("lastName", values.lastName);
+            formData.append("email", values.email);
+            formData.append("password", values.password);
+            formData.append("location", values.location);
+            formData.append("occupation", values.occupation);
             formData.append("picture", values.picture);
+            formData.append("picturePath", values.picture.name);
 
-            const response = await fetch(
+            const res = await fetch(
                 "https://spark-yag0.onrender.com/auth/register",
                 {
                     method: "POST",
                     body: formData,
                 }
             );
-            const savedUser = await response.json();
+
+            if (!res.ok) {
+                setSnackbar({
+                    open: true,
+                    message: "Something Went Wrong! Try Using Another Email.",
+                    severity: "error",
+                });
+                setLoading(false);
+                return;
+            }
+
+            const savedUser = await res.json();
             onSubmitProps.resetForm();
             setLoading(false);
 
-            if (response.ok && savedUser) {
-                setSnackMessage("Spark ID Created!");
-                setSnackSeverity("success");
-                setSnackOpen(true);
+            if (savedUser) {
+                setSnackbar({
+                    open: true,
+                    message: "Spark ID Created! Login.",
+                    severity: "success",
+                });
                 setPageType("login");
-            } else {
-                setSnackMessage("Failed to create account. Try again.");
-                setSnackSeverity("error");
-                setSnackOpen(true);
             }
         } catch (error) {
-            setSnackMessage("Something went wrong. Try again later.");
-            setSnackSeverity("error");
-            setSnackOpen(true);
+            console.error("Error during registration:", error);
+            setSnackbar({
+                open: true,
+                message: "Something Went Wrong! Try Using Another Email.",
+                severity: "error",
+            });
             setLoading(false);
         }
     };
 
+    // ---------------------- LOGIN FUNCTION ----------------------
     const login = async (values, onSubmitProps) => {
-        setLoading(true);
         try {
-            const response = await fetch(
+            setLoading(true);
+            const res = await fetch(
                 "https://spark-yag0.onrender.com/auth/login",
                 {
                     method: "POST",
@@ -114,24 +136,39 @@ const Form = () => {
                     body: JSON.stringify(values),
                 }
             );
-            const loggedIn = await response.json();
+            const loggedIn = await res.json();
             onSubmitProps.resetForm();
             setLoading(false);
 
-            if (response.ok && loggedIn.token) {
+            if (res.status === 200 && loggedIn.user && loggedIn.token) {
                 dispatch(
-                    setLogin({ user: loggedIn.user, token: loggedIn.token })
+                    setLogin({
+                        user: loggedIn.user,
+                        token: loggedIn.token,
+                    })
                 );
-                navigate("/home");
+                // Navigate to home and pass welcome flag
+                navigate("/home", { state: { welcome: true } });
+            } else if (res.status === 400) {
+                setSnackbar({
+                    open: true,
+                    message: "Incorrect Credentials!",
+                    severity: "error",
+                });
             } else {
-                setSnackMessage("Invalid Credentials.");
-                setSnackSeverity("error");
-                setSnackOpen(true);
+                setSnackbar({
+                    open: true,
+                    message: "Something Went Wrong! Try Again.",
+                    severity: "error",
+                });
             }
         } catch (error) {
-            setSnackMessage("Something went wrong. Try again later.");
-            setSnackSeverity("error");
-            setSnackOpen(true);
+            console.error("Login error:", error);
+            setSnackbar({
+                open: true,
+                message: "Something Went Wrong! Try Again.",
+                severity: "error",
+            });
             setLoading(false);
         }
     };
@@ -331,9 +368,7 @@ const Form = () => {
                                     m: "2rem 0",
                                     p: "1rem",
                                     backgroundColor: palette.primary.main,
-                                    color: loading
-                                        ? "black"
-                                        : palette.background.alt,
+                                    color: palette.background.alt,
                                     "&:hover": { color: palette.primary.main },
                                 }}
                             >
@@ -368,20 +403,19 @@ const Form = () => {
                 )}
             </Formik>
 
-            {/* Snackbar */}
+            {/* ---------------------- SNACKBAR ---------------------- */}
             <Snackbar
-                open={snackOpen}
-                autoHideDuration={4000}
-                onClose={handleSnackClose}
+                open={snackbar.open}
+                autoHideDuration={5000}
+                onClose={handleSnackbarClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
                 <Alert
-                    onClose={handleSnackClose}
-                    severity={snackSeverity}
-                    variant="filled"
+                    onClose={handleSnackbarClose}
+                    severity={snackbar.severity}
                     sx={{ width: "100%" }}
                 >
-                    {snackMessage}
+                    {snackbar.message}
                 </Alert>
             </Snackbar>
         </>

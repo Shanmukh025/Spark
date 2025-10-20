@@ -8,15 +8,24 @@ const index = () => {
                     cursor: "pointer",
                 }}
             >
-                <iframe
-                    src="https://xspark.instatus.com/embed-status/5d821429/dark-sm"
-                    width="220"
-                    height="60"
-                    frameBorder="0"
-                    scrolling="no"
-                    title="SPARK Status"
-                    style={{ border: "none" }}
-                />
+                <div
+                    style={{
+                        fontFamily: "'Inter', sans-serif",
+                        margin: 0,
+                        padding: 0,
+                    }}
+                >
+                    <iframe
+                        src="https://xspark.instatus.com/embed-status/5d821429/dark-sm"
+                        width="218"
+                        height="60"
+                        frameBorder="0"
+                        scrolling="no"
+                        style={{ border: "none" }}
+                        title="Spark Status Widget"
+                    />
+                </div>
+
                 <h3
                     style={{ textDecoration: "none" }}
                     onMouseOver={(e) =>
